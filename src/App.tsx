@@ -1,17 +1,17 @@
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
 import DashboardView from "./views/dashboard/DashboardView";
 
+// bootstrap
+import Container from "react-bootstrap/Container";
+
 function App() {
   return (
-    <div>
-      <h1>bonsai</h1>
-
+    <Container className="bg-light w-100 h-100">
       <Routes>
         <Route path="/dashboard" element={<DashboardView />} />
       </Routes>
-    </div>
+    </Container>
   );
 }
 
