@@ -1,1 +1,3 @@
 # bonsai
+
+Grow good habits.
