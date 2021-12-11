@@ -18,7 +18,8 @@ const DashNav = () => {
     <>
       <Nav className="flex-sm-column w-100">
         <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-        <Nav.Link href="/forest">Your Forest</Nav.Link>
+        <Nav.Link href="/dashboard/forest">Your Forest</Nav.Link>
+        <Nav.Link href="/dashboard/plant-tree">Plant a Tree</Nav.Link>
       </Nav>
     </>
   );

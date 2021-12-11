@@ -13,3 +13,20 @@ h1.logo {
 .main-container {
   padding: 50px 0;
 }
+
+/* might change this later */
+.sm-margin-top {
+  margin-top: 10px;
+}
+
+.sm-margin-bottom {
+  margin-bottom: 10px;
+}
+
+.sm-margin-y {
+  margin: 10px 0;
+}
+
+.sm-margin-x {
+  margin: 0 10px;
+}

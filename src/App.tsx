@@ -5,6 +5,7 @@ import DashboardView from "./views/dashboard/DashboardView";
 // bootstrap
 import Container from "react-bootstrap/Container";
 import PlantTreeView from "./views/trees/PlantTreeView";
+import ForestView from "./views/dashboard/forest/ForestView";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/dashboard" element={<DashboardView />} />
         <Route path="/dashboard/plant-tree" element={<PlantTreeView />} />
+        <Route path="/dashboard/forest" element={<ForestView />} />
       </Routes>
     </Container>
   );
