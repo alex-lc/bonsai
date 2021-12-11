@@ -1,7 +1,7 @@
 import Nav from "react-bootstrap/Nav";
 
 const DashNav = () => {
-  const unauthenticated = true;
+  const unauthenticated = false;
 
   if (unauthenticated) {
     return (
@@ -18,6 +18,7 @@ const DashNav = () => {
     <>
       <Nav className="flex-sm-column w-100">
         <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+        <Nav.Link href="/forest">Your Forest</Nav.Link>
       </Nav>
     </>
   );
