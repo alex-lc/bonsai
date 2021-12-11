@@ -1,3 +1,8 @@
 # bonsai
 
-Grow good habits.
+Grow better habits.
+
+### Stack (so far)
+
+- TypeScript
+- React
