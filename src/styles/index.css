@@ -1,1 +1,15 @@
 @import-normalize;
+
+h1.logo {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.nav-menu a {
+  margin: 5px;
+  padding: 0;
+}
+
+.main-container {
+  padding: 50px 0;
+}
