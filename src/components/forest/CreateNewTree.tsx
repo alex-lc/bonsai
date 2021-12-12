@@ -6,16 +6,24 @@ import { Form, FloatingLabel, Alert, Button } from "react-bootstrap";
 const CreateNewTree = () => {
   const [showInfo, setShowInfo] = React.useState(true);
   const [tree, setTree] = React.useState({
-    name: "",
+    treeName: "",
     purpose: "",
   });
 
-  // const handleInputChange = (e) => {
-  //   setTree({
-  //     ...tree,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTree({
+      ...tree,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const createTree = () => {
+    // TODO
+  };
+
+  React.useEffect(() => {
+    console.log(tree);
+  }, [tree]);
 
   return (
     <>
@@ -36,24 +44,34 @@ const CreateNewTree = () => {
           </div>
         </Alert>
       )}
-      <h2 className="sm-margin-y title">Create a New Tree</h2>
+      <h2 className="sm-margin-y title">Plant a New Tree</h2>
       <Form className="sm-margin-y">
         <FloatingLabel
           controlId="formTreeName"
-          label="Tree Name"
+          label="Name your tree."
           className="md-margin-bottom"
         >
-          <Form.Control type="text" placeholder="Tree Name" />
+          <Form.Control
+            type="text"
+            placeholder="Tree Name"
+            name="treeName"
+            onChange={handleInputChange}
+          />
         </FloatingLabel>
 
         <FloatingLabel
           controlId="formTreePurpose"
-          label="What Habit Is This Tree For?"
+          label="What is your goal?"
           className="md-margin-bottom"
         >
-          <Form.Control type="text" placeholder="Purpose" />
+          <Form.Control
+            type="text"
+            placeholder="Purpose"
+            name="purpose"
+            onChange={handleInputChange}
+          />
         </FloatingLabel>
-        <Button variant="success" type="submit" className="sm-margin-top">
+        <Button variant="success" type="submit" className="sm-margin-y">
           Finish Planting Tree
         </Button>
       </Form>
