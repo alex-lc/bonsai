@@ -1,10 +1,29 @@
 import React from "react";
 // bootstrap
-import { Form, FormControl, Alert, Button } from "react-bootstrap";
+import { Form, FloatingLabel, Alert, Button } from "react-bootstrap";
 
 // form component to create a new tree
 const CreateNewTree = () => {
   const [showInfo, setShowInfo] = React.useState(true);
+  const [tree, setTree] = React.useState({
+    treeName: "",
+    purpose: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTree({
+      ...tree,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const createTree = () => {
+    // TODO
+  };
+
+  React.useEffect(() => {
+    console.log(tree);
+  }, [tree]);
 
   return (
     <>
@@ -25,12 +44,36 @@ const CreateNewTree = () => {
           </div>
         </Alert>
       )}
-      <h2 className="sm-margin-y">Create a New Tree</h2>
+      <h2 className="sm-margin-y title">Plant a New Tree</h2>
       <Form className="sm-margin-y">
-        <Form.Group controlId="formTreeName">
-          <Form.Label>Name Your Tree</Form.Label>
-          <Form.Control type="text" placeholder="Name Me..." />
-        </Form.Group>
+        <FloatingLabel
+          controlId="formTreeName"
+          label="Name your tree."
+          className="md-margin-bottom"
+        >
+          <Form.Control
+            type="text"
+            placeholder="Tree Name"
+            name="treeName"
+            onChange={handleInputChange}
+          />
+        </FloatingLabel>
+
+        <FloatingLabel
+          controlId="formTreePurpose"
+          label="What is your goal?"
+          className="md-margin-bottom"
+        >
+          <Form.Control
+            type="text"
+            placeholder="Purpose"
+            name="purpose"
+            onChange={handleInputChange}
+          />
+        </FloatingLabel>
+        <Button variant="success" type="submit" className="sm-margin-y">
+          Finish Planting Tree
+        </Button>
       </Form>
     </>
   );
