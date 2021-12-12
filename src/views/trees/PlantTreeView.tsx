@@ -14,7 +14,7 @@ const PlantTreeView = () => {
         <Logo />
         <DashNav />
       </Container>
-      <Container className="w-75 bg-secondary text-light">
+      <Container className="w-75 bg-secondary">
         <CreateNewTree />
       </Container>
     </Container>

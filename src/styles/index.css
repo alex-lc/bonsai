@@ -5,6 +5,12 @@ h1.logo {
   padding-bottom: 0;
 }
 
+/* page titles */
+h2.title {
+  font-size: 24px;
+  color: #ffffff;
+}
+
 .nav-menu a {
   margin: 5px;
   padding: 0;
@@ -29,4 +35,20 @@ h1.logo {
 
 .sm-margin-x {
   margin: 0 10px;
+}
+
+.md-margin-top {
+  margin-top: 20px;
+}
+
+.md-margin-bottom {
+  margin-bottom: 20px;
+}
+
+.md-margin-y {
+  margin: 20px 0;
+}
+
+.md-margin-x {
+  margin: 0 20px;
 }
