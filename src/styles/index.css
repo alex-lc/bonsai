@@ -52,3 +52,18 @@ h2.title {
 .md-margin-x {
   margin: 0 20px;
 }
+
+/* dashboard styling */
+.dashboard-stats-component {
+  text-align: center;
+  border: 1px solid purple;
+}
+
+.dashboard-stats-component h3 {
+  margin-top: 20px;
+}
+
+.dashboard-stats-component p {
+  font-weight: 900;
+  font-size: 24px;
+}
