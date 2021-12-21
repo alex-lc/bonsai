@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 // components
 import DashNav from "../../../components/menus/DashNav";
 import Logo from "../../../components/header/Logo";
+import ForestList from "../../../components/forest/ForestList";
 
 const ForestView = () => {
   return (
@@ -14,7 +15,7 @@ const ForestView = () => {
         <DashNav />
       </Container>
       <Container className="w-75 bg-secondary">
-        <p>forest list main content section</p>
+        <ForestList />
       </Container>
     </Container>
   );
