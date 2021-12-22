@@ -56,6 +56,7 @@ const CreateNewTree = () => {
             placeholder="Tree Name"
             name="treeName"
             onChange={handleInputChange}
+            autoComplete="off"
           />
         </FloatingLabel>
 
@@ -69,6 +70,7 @@ const CreateNewTree = () => {
             placeholder="Purpose"
             name="purpose"
             onChange={handleInputChange}
+            autoComplete="off"
           />
         </FloatingLabel>
         <Button variant="success" type="submit" className="sm-margin-y">

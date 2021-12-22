@@ -1,4 +1,4 @@
-import Nav from "react-bootstrap/Nav";
+import { Nav } from "react-bootstrap";
 
 const DashNav = () => {
   const unauthenticated = false;
@@ -16,7 +16,11 @@ const DashNav = () => {
 
   return (
     <>
-      <Nav className="flex-sm-column w-100">
+      <Nav
+        variant="tabs"
+        className="flex-sm-column w-100"
+        style={{ borderBottom: "none" }}
+      >
         <Nav.Link href="/dashboard">Dashboard</Nav.Link>
         <Nav.Link href="/dashboard/forest">Your Forest</Nav.Link>
         <Nav.Link href="/dashboard/plant-tree">Plant a Tree</Nav.Link>

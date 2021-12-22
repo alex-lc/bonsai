@@ -5,7 +5,7 @@ import { Nav } from "react-bootstrap";
 const ForestUserControls = () => {
   return (
     <ForestUserControlsContaier>
-      <Nav variant="tabs">
+      <Nav variant="tabs" style={{ borderBottom: "none" }}>
         <Nav.Item>
           <Nav.Link href="/dashboard/plant-tree">Plant New Tree</Nav.Link>
         </Nav.Item>
