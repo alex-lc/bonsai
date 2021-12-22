@@ -6,3 +6,5 @@ Grow better habits.
 
 - TypeScript
 - React
+- styled-components
+- React Bootstrap
