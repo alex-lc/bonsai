@@ -1,3 +1,5 @@
+// bootstrap
+import { Container } from "react-bootstrap";
 // components
 import ForestListItem from "./ForestListItem";
 
@@ -6,11 +8,11 @@ const ForestList = () => {
   const placeholderItems = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
   return (
-    <>
+    <Container style={{ padding: "10px" }}>
       {placeholderItems.map((item) => {
         return <ForestListItem />;
       })}
-    </>
+    </Container>
   );
 };
 

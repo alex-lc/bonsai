@@ -10,7 +10,10 @@ import DashStatistics from "../../components/dashboard/DashStatistics";
 
 const DashboardView = () => {
   return (
-    <Container className="w-100 d-flex main-container">
+    <Container
+      className="w-100 d-flex main-container"
+      style={{ padding: "10px" }}
+    >
       <Container className="w-25 bg-light">
         <Logo />
         <DashNav />
