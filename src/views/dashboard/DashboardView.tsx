@@ -18,7 +18,7 @@ const DashboardView = () => {
         <Logo />
         <DashNav />
       </Container>
-      <Container className="w-75 bg-secondary">
+      <Container className="w-75">
         <DashStatistics />
       </Container>
     </Container>
