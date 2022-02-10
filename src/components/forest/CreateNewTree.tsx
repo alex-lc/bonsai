@@ -17,7 +17,7 @@ const CreateNewTree = () => {
     });
   };
 
-  const createTree = () => {
+  const createTree = async () => {
     // TODO
   };
 

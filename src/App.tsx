@@ -1,9 +1,10 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
-import DashboardView from "./views/dashboard/DashboardView";
 
 // bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
+
+import DashboardView from "./views/dashboard/DashboardView";
 import PlantTreeView from "./views/trees/PlantTreeView";
 import ForestView from "./views/dashboard/forest/ForestView";
 
