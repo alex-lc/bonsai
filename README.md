@@ -2,9 +2,10 @@
 
 Grow better habits.
 
-### Stack (so far)
+### built with
 
 - TypeScript
 - React
+- React Query
 - styled-components
 - React Bootstrap
