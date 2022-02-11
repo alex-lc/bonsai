@@ -1,35 +1,38 @@
-// react
-import axios from "axios";
-import React, { useState } from "react";
+import { useQuery } from "react-query";
 // bootstrap
 import { Container } from "react-bootstrap";
 // components
 import ForestUserControls from "./controls/ForestUserControls";
 import ForestListItem from "./ForestListItem";
+// utils
+import { fetchTrees } from "../../utils/api";
 
 const ForestList = () => {
-  // temporary placeholder items until we actually have some mock data
-  const placeholderItems = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  const { isLoading, isError, data } = useQuery("fetchTrees", fetchTrees);
 
-  const [trees, setTrees] = useState([]);
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-  React.useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/trees")
-      .then((res) => {
-        console.log(res);
-        setTrees(res.data);
-      })
-      .catch((e) => console.error(e));
-  }, []);
+  if (isError) {
+    return <p>Something went wrong...</p>;
+  }
 
   return (
     <Container>
-      {console.log("OUR TREES STATE: ", trees)}
       <ForestUserControls />
-      {placeholderItems.map((item, idx) => {
-        return <ForestListItem key={idx} />;
-      })}
+      {data &&
+        data.data.map(
+          (item: { name: string; meaning: string }, idx: number) => {
+            return (
+              <ForestListItem
+                name={item.name}
+                meaning={item.meaning}
+                key={idx}
+              />
+            );
+          }
+        )}
     </Container>
   );
 };
