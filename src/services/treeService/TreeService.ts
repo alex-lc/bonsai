@@ -17,9 +17,16 @@ const plant = async (e: any) => {
   return axios.post(`${api.url}/trees`, treeData);
 };
 
+const deleteTree = async (id: number) => {
+  const isDeleted = await axios.delete(`${api.url}/trees/${id}`);
+
+  return isDeleted ? true : false;
+};
+
 const TreeService = {
   fetchTrees,
   plant,
+  deleteTree,
 };
 
 export default TreeService;

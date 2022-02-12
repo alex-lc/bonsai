@@ -26,9 +26,13 @@ const ForestList = () => {
       <ForestUserControls />
       {data &&
         data.data.map(
-          (item: { name: string; meaning: string }, idx: number) => {
+          (
+            item: { id: number; name: string; meaning: string },
+            idx: number
+          ) => {
             return (
               <ForestListItem
+                id={item.id}
                 name={item.name}
                 meaning={item.meaning}
                 key={idx}
