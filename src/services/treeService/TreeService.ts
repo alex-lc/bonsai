@@ -8,14 +8,6 @@ const apiClient = axios.create({
   },
 });
 
-// const plant = async ({ name, meaning }: Tree) => {
-//   const res = await apiClient.post<any>("/trees", {
-//     name,
-//     meaning,
-//   });
-//   return res.data;
-// };
-
 const plant = async (e: any) => {
   e.preventDefault();
   const treeData = new FormData(e.target);
