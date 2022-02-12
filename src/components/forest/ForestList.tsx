@@ -4,11 +4,14 @@ import { Container } from "react-bootstrap";
 // components
 import ForestUserControls from "./controls/ForestUserControls";
 import ForestListItem from "./ForestListItem";
-// utils
-import { fetchTrees } from "../../utils/api";
+// services
+import TreeService from "../../services/treeService/TreeService";
 
 const ForestList = () => {
-  const { isLoading, isError, data } = useQuery("fetchTrees", fetchTrees);
+  const { isLoading, isError, data } = useQuery(
+    "fetchTrees",
+    TreeService.fetchTrees
+  );
 
   if (isLoading) {
     return <p>Loading...</p>;
