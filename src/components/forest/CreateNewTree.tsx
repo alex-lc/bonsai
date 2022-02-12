@@ -1,4 +1,7 @@
 import React from "react";
+import { useMutation } from "react-query";
+// services
+import TreeService from "../../services/treeService/TreeService";
 // bootstrap
 import { Form, FloatingLabel, Alert, Button } from "react-bootstrap";
 
@@ -6,8 +9,8 @@ import { Form, FloatingLabel, Alert, Button } from "react-bootstrap";
 const CreateNewTree = () => {
   const [showInfo, setShowInfo] = React.useState(true);
   const [tree, setTree] = React.useState({
-    treeName: "",
-    purpose: "",
+    name: "",
+    meaning: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,13 +20,15 @@ const CreateNewTree = () => {
     });
   };
 
-  const createTree = async () => {
-    // TODO
-  };
+  const { isLoading, mutate } = useMutation(TreeService.plant, {
+    onSuccess: (res) => {
+      console.log(res);
+    },
+  });
 
-  React.useEffect(() => {
-    console.log(tree);
-  }, [tree]);
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -32,10 +37,8 @@ const CreateNewTree = () => {
           <Alert.Heading>How It Works...</Alert.Heading>
           <p>
             The tree you are planting symbolizes the effort you are putting into
-            growing better habits. Whether you are struggling with addiction,
-            mental or physical health issues, or anything else you are actively
-            working towards overcoming. Each day your tree will grow as you too
-            grow as the best version of yourself.
+            growing better habits. No matter your purpose, your tree will grow
+            each day with you as you achieve your goals.
           </p>
           <div className="d-flex justify-content-end">
             <Button onClick={() => setShowInfo(false)} variant="outline-dark">
@@ -45,7 +48,7 @@ const CreateNewTree = () => {
         </Alert>
       )}
       <h2 className="sm-margin-y title">Plant a New Tree</h2>
-      <Form className="sm-margin-y">
+      <Form className="sm-margin-y" onSubmit={mutate}>
         <FloatingLabel
           controlId="formTreeName"
           label="Name your tree."
@@ -54,7 +57,7 @@ const CreateNewTree = () => {
           <Form.Control
             type="text"
             placeholder="Tree Name"
-            name="treeName"
+            name="name"
             onChange={handleInputChange}
             autoComplete="off"
           />
@@ -62,13 +65,13 @@ const CreateNewTree = () => {
 
         <FloatingLabel
           controlId="formTreePurpose"
-          label="What is your goal?"
+          label="What does this tree mean to you?"
           className="md-margin-bottom"
         >
           <Form.Control
             type="text"
             placeholder="Purpose"
-            name="purpose"
+            name="meaning"
             onChange={handleInputChange}
             autoComplete="off"
           />
