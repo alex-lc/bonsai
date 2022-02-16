@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 // bootstrap
 import { Container } from "react-bootstrap";
