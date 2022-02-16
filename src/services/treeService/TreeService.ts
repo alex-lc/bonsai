@@ -1,5 +1,4 @@
 import axios from "axios";
-import Tree from "../../types/Tree";
 
 const api = {
   url: process.env.REACT_APP_API,
