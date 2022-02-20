@@ -25,6 +25,7 @@ const LoginForm = () => {
     onSuccess: (res) => {
       console.log(res);
       localStorage.setItem("token", res?.data.accessToken);
+      localStorage.setItem("id", res?.data.id);
       navigate("/dashboard");
     },
   });
