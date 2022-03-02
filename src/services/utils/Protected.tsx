@@ -1,16 +1,18 @@
-import { useEffect, useState, ReactElement } from "react";
-import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 // utils
 import { AuthUtils } from "./authUtils";
 
-const Protected = (props: { children: ReactElement }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+const Protected = (props: { children: any }) => {
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>();
 
   useEffect(() => {
-    setIsAuthenticated(AuthUtils.isAuthenticated());
-  }, []);
-  
-  return isAuthenticated ? props.children : <Navigate to="/login" />;
+    const auth = AuthUtils.isAuthenticated();
+    auth ? setIsAuthenticated(true) : navigate("/login");
+  }, [isAuthenticated, navigate]);
+
+  return props.children;
 };
 
 export default Protected;

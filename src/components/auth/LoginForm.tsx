@@ -23,7 +23,6 @@ const LoginForm = () => {
 
   const { isLoading, mutate } = useMutation(AuthService.login, {
     onSuccess: (res) => {
-      console.log(res);
       localStorage.setItem("token", res?.data.accessToken);
       localStorage.setItem("id", res?.data.id);
       localStorage.setItem("username", res?.data.username);
