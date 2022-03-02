@@ -21,6 +21,24 @@ const fetchTrees = async () => {
   }
 };
 
+const fetchUserTrees = async (id: number) => {
+  const isAuthenticated = AuthUtils.isAuthenticated();
+  if (isAuthenticated) {
+    const token = AuthUtils.getToken();
+    const config: { headers: AxiosRequestHeaders } = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const trees = await axios.get(`${api.url}/trees/user/${id}`, config);
+    console.log("We made it here.");
+    console.log("trees: " + trees.data);
+    return trees.data;
+  } else {
+    console.log("Failure.");
+  }
+};
+
 const plant = async (e: any) => {
   e.preventDefault();
   const treeData = new FormData(e.target);
@@ -36,6 +54,7 @@ const deleteTree = async (id: number) => {
 
 const TreeService = {
   fetchTrees,
+  fetchUserTrees,
   plant,
   deleteTree,
 };

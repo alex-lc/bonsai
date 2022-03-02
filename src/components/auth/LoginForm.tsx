@@ -26,6 +26,7 @@ const LoginForm = () => {
       console.log(res);
       localStorage.setItem("token", res?.data.accessToken);
       localStorage.setItem("id", res?.data.id);
+      localStorage.setItem("username", res?.data.username);
       navigate("/dashboard");
     },
   });

@@ -1,12 +1,15 @@
 import React from "react";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 // services
 import AuthService from "../../services/authService/authService";
 
 // bootstrap
-import { FloatingLabel, Form, Button } from "react-bootstrap";
+import { FloatingLabel, Form, Button, Alert } from "react-bootstrap";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+  const [registerSuccess, setRegisterSuccess] = React.useState(false);
   const [user, setUser] = React.useState({
     username: "",
     password: "",
@@ -23,6 +26,8 @@ const RegisterForm = () => {
   const { isLoading, mutate } = useMutation(AuthService.register, {
     onSuccess: (res) => {
       console.log("User successfully registered.");
+      setRegisterSuccess(true);
+      navigate("/login");
     },
   });
 
@@ -78,6 +83,9 @@ const RegisterForm = () => {
         <Button variant="success" type="submit" className="sm-margin-y">
           Signup
         </Button>
+        {registerSuccess && (
+          <Alert variant="success">Successfully registered!</Alert>
+        )}
       </Form>
     </>
   );
