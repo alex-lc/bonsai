@@ -12,7 +12,16 @@ const getToken = () => {
   return localStorage.getItem("token");
 };
 
+const buildRequestConfig = (token: string) => {
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
+
 export const AuthUtils = {
   isAuthenticated,
   getToken,
+  buildRequestConfig,
 };
