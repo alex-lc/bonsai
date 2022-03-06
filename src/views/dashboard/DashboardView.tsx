@@ -1,7 +1,7 @@
 import React from "react";
 // bootstrap
 import Container from "react-bootstrap/Container";
-import { Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 // components
 import DashNav from "../../components/menus/DashNav";

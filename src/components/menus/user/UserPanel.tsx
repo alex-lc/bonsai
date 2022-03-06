@@ -34,7 +34,7 @@ const UserPanel = () => {
     navigate("/login");
   };
 
-  const { data, isLoading, error } = useQuery("getUserDetails", getUserDetails);
+  const { isLoading, error } = useQuery("getUserDetails", getUserDetails);
 
   if (isLoading) {
     return <p>Loading...</p>;

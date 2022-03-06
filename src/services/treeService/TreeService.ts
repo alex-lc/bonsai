@@ -31,9 +31,7 @@ const fetchUserTrees = async (id: number) => {
       },
     };
     const trees = await axios.get(`${api.url}/trees/user/${id}`, config);
-    console.log("We made it here.");
-    console.log("trees: " + trees.data);
-    return trees.data;
+    return trees;
   } else {
     console.log("Failure.");
   }
@@ -41,9 +39,19 @@ const fetchUserTrees = async (id: number) => {
 
 const plant = async (e: any) => {
   e.preventDefault();
-  const treeData = new FormData(e.target);
-  treeData.append("lastPlanted", Date.now().toString());
-  return axios.post(`${api.url}/trees`, treeData);
+  const isAuthenticated = AuthUtils.isAuthenticated();
+  if (isAuthenticated) {
+    const token = AuthUtils.getToken();
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const treeData = new FormData(e.target);
+    treeData.append("lastPlanted", Date.now().toString());
+    const res = await axios.post(`${api.url}/trees`, treeData, config);
+    return res;
+  }
 };
 
 const deleteTree = async (id: number) => {

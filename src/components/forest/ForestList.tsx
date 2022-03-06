@@ -6,7 +6,8 @@ import { Container } from "react-bootstrap";
 import ForestUserControls from "./controls/ForestUserControls";
 import ForestListItem from "./ForestListItem";
 // services
-import TreeService from "../../services/treeService/TreeService";
+import axios from "axios";
+import { AuthUtils } from "../../services/utils/authUtils";
 
 const ForestList = () => {
   const [uid, setUid] = useState<number>(Number(localStorage.getItem("id")));
@@ -15,15 +16,22 @@ const ForestList = () => {
     setUid((uid) => Number(localStorage.getItem("id")));
   }, []);
 
-  const fetchUserTrees = () => {
-    console.log("Fetching for user id: " + uid);
-    TreeService.fetchUserTrees(uid);
-  };
-
-  const { isLoading, isError, data } = useQuery(
-    "fetchUserTrees",
-    fetchUserTrees
-  );
+  const { isLoading, isError, data } = useQuery("fetchUserTrees", async () => {
+    const isAuthenticated = AuthUtils.isAuthenticated();
+    if (isAuthenticated) {
+      const token = AuthUtils.getToken();
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const res = await axios.get(
+        `${process.env.REACT_APP_API}/trees/user/${uid}`,
+        config
+      );
+      return res.data;
+    }
+  });
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -36,23 +44,28 @@ const ForestList = () => {
   return (
     <Container>
       <ForestUserControls />
-      {console.log(data)}
-      {/* {data &&
+      {data &&
         data.map(
           (
-            item: { id: number; name: string; meaning: string },
+            tree: {
+              id: number;
+              lastPlanted: string;
+              name: string;
+              meaning: string;
+            },
             idx: number
           ) => {
             return (
               <ForestListItem
-                id={item.id}
-                name={item.name}
-                meaning={item.meaning}
                 key={idx}
+                id={tree.id}
+                name={tree.name}
+                meaning={tree.meaning}
+                lastPlanted={tree.lastPlanted}
               />
             );
           }
-        )} */}
+        )}
     </Container>
   );
 };

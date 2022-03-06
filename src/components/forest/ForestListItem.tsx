@@ -6,10 +6,11 @@ import { Button, Card, Col, Row } from "react-bootstrap";
 
 const ForestListItem = (props: {
   id: number;
+  lastPlanted: string;
   name: string;
   meaning: string;
 }) => {
-  const { id, name, meaning } = props;
+  const { id, name, meaning, lastPlanted } = props;
 
   const queryClient = useQueryClient();
   const { isLoading, mutate } = useMutation(TreeService.deleteTree, {
@@ -31,6 +32,7 @@ const ForestListItem = (props: {
             <Card.Text>
               {meaning}, {id}
             </Card.Text>
+            <Card.Subtitle>planted on {lastPlanted}</Card.Subtitle>
           </Col>
           <Col>
             <Button onClick={() => mutate(id)}>Delete</Button>
