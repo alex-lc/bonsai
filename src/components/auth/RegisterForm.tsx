@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 // services
 import AuthService from "../../services/authService/authService";
 
 // bootstrap
-import { FloatingLabel, Form, Button, Alert } from "react-bootstrap";
+import { FloatingLabel, Form, Button, Modal } from "react-bootstrap";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-  const [registerSuccess, setRegisterSuccess] = React.useState(false);
-  const [user, setUser] = React.useState({
+  const [user, setUser] = useState({
     username: "",
     password: "",
     email: "",
   });
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser({
@@ -25,9 +28,11 @@ const RegisterForm = () => {
 
   const { isLoading, mutate } = useMutation(AuthService.register, {
     onSuccess: (res) => {
-      console.log("User successfully registered.");
-      setRegisterSuccess(true);
-      navigate("/login");
+      handleShow();
+      setTimeout(() => {
+        handleClose();
+        navigate("/login");
+      }, 2000);
     },
   });
 
@@ -83,10 +88,18 @@ const RegisterForm = () => {
         <Button variant="success" type="submit" className="sm-margin-y">
           Signup
         </Button>
-        {registerSuccess && (
-          <Alert variant="success">Successfully registered!</Alert>
-        )}
       </Form>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Success</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>You successfully created your account.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Login
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
