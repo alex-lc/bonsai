@@ -55,7 +55,6 @@ const ForestList = () => {
             },
             idx: number
           ) => {
-            console.log(tree);
             return (
               <ForestListItem
                 key={idx}

@@ -49,9 +49,15 @@ const plant = async (e: any) => {
 };
 
 const deleteTree = async (id: number) => {
-  const isDeleted = await axios.delete(`${api.url}/trees/${id}`);
-
-  return isDeleted ? true : false;
+  const isAuthenticated = AuthUtils.isAuthenticated();
+  if (isAuthenticated) {
+    const token = AuthUtils.getToken();
+    if (token) {
+      const config = AuthUtils.buildRequestConfig(token);
+      const isDeleted = await axios.delete(`${api.url}/trees/${id}`, config);
+      return isDeleted ? true : false;
+    }
+  }
 };
 
 const TreeService = {
