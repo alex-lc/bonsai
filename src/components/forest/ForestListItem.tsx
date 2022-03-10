@@ -13,7 +13,7 @@ const ForestListItem = (props: {
   meaning: string;
 }) => {
   const { id, name, meaning, lastPlanted } = props;
-  const [date, setDate] = React.useState<string | Date | undefined>();
+  const [date, setDate] = useState<string | Date | undefined>();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

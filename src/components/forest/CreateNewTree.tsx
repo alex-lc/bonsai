@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMutation } from "react-query";
 // services
 import TreeService from "../../services/treeService/TreeService";
+// react-router-dom
+import { useNavigate } from "react-router-dom";
 // bootstrap
-import { Form, FloatingLabel, Alert, Button } from "react-bootstrap";
+import { Form, FloatingLabel, Alert, Button, Modal } from "react-bootstrap";
 
 // form component to create a new tree
 const CreateNewTree = () => {
-  const [showInfo, setShowInfo] = React.useState(true);
-  const [tree, setTree] = React.useState({
+  const navigate = useNavigate();
+  const [showInfo, setShowInfo] = useState(true);
+  const [tree, setTree] = useState({
     name: "",
     meaning: "",
   });
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTree({
@@ -22,7 +29,11 @@ const CreateNewTree = () => {
 
   const { isLoading, mutate } = useMutation(TreeService.plant, {
     onSuccess: (res) => {
-      console.log(res);
+      handleShow();
+      setTimeout(() => {
+        handleClose();
+        navigate("/dashboard/forest");
+      }, 2000);
     },
   });
 
@@ -80,6 +91,17 @@ const CreateNewTree = () => {
           Finish Planting Tree
         </Button>
       </Form>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Success</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>You successfully planted your tree!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Continue
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
