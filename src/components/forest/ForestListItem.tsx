@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "react-query";
 // services
 import TreeService from "../../services/treeService/TreeService";
@@ -13,15 +13,16 @@ const ForestListItem = (props: {
   meaning: string;
 }) => {
   const { id, name, meaning, lastPlanted } = props;
-  const [date, setDate] = useState<string | Date | undefined>();
+  const [date, setDate] = useState<string | undefined>();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    setDate(DataUtils.convertPlantedTime(lastPlanted));
-  }, []);
+    setDate(DataUtils.convertDate(lastPlanted));
+    DataUtils.calculateNumDays(lastPlanted);
+  }, [lastPlanted]);
 
   const queryClient = useQueryClient();
   const { isLoading, mutate } = useMutation(TreeService.deleteTree, {
