@@ -41,7 +41,6 @@ const plant = async (e: any) => {
     if (token) {
       const config = AuthUtils.buildRequestConfig(token);
       const treeData = new FormData(e.target);
-      treeData.append("lastPlanted", Date.now().toString());
       const res = await axios.post(`${api.url}/trees`, treeData, config);
       return res;
     }
