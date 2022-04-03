@@ -1,10 +1,17 @@
 import axios from "axios";
 import { AuthUtils } from "../utils/authUtils";
+import { phaseMap } from "../../utils/phaseMap";
+import { DataUtils } from "../utils/dataUtils";
 
 const api = {
   url: process.env.REACT_APP_API,
 };
 
+/**
+ * Fetch all trees
+ * @returns all trees
+ * NOTE: Will probably remove this later.
+ */
 const fetchTrees = async () => {
   const isAuthenticated = AuthUtils.isAuthenticated();
   if (isAuthenticated) {
@@ -19,6 +26,11 @@ const fetchTrees = async () => {
   }
 };
 
+/**
+ * Fetch trees created by specific user ID
+ * @param id
+ * @returns
+ */
 const fetchUserTrees = async (id: number) => {
   const isAuthenticated = AuthUtils.isAuthenticated();
   if (isAuthenticated) {
@@ -33,6 +45,11 @@ const fetchUserTrees = async (id: number) => {
   }
 };
 
+/**
+ * Plant a new tree
+ * @param e
+ * @returns
+ */
 const plant = async (e: any) => {
   e.preventDefault();
   const isAuthenticated = AuthUtils.isAuthenticated();
@@ -47,6 +64,11 @@ const plant = async (e: any) => {
   }
 };
 
+/**
+ * Delete tree by tree ID
+ * @param id
+ * @returns
+ */
 const deleteTree = async (id: number) => {
   const isAuthenticated = AuthUtils.isAuthenticated();
   if (isAuthenticated) {
@@ -59,11 +81,20 @@ const deleteTree = async (id: number) => {
   }
 };
 
+/**
+ * Calculate tree growth phase / stage
+ */
+const calculatePhase = (lastPlanted: string) => {
+  const daysSincePlanted = DataUtils.calculateNumDays(lastPlanted);
+  return phaseMap[daysSincePlanted];
+};
+
 const TreeService = {
   fetchTrees,
   fetchUserTrees,
   plant,
   deleteTree,
+  calculatePhase,
 };
 
 export default TreeService;

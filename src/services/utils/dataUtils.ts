@@ -13,6 +13,7 @@ const calculateNumDays = (lastPlanted: string) => {
   const today = new Date();
   const daysBetween = Math.abs(differenceInDays(new Date(dateStr), today));
   console.log("Days since you last planted this tree: ", daysBetween);
+  return daysBetween;
 };
 
 export const DataUtils = {

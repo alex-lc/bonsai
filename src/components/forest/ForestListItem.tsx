@@ -15,13 +15,17 @@ const ForestListItem = (props: {
   const { id, name, meaning, lastPlanted } = props;
   const [date, setDate] = useState<string | undefined>();
   const [show, setShow] = useState(false);
+  const [stage, setStage] = useState<string | undefined>();
+  const [daysGrowing, setDaysGrowing] = useState<number | undefined>();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
     setDate(DataUtils.convertDate(lastPlanted));
-    DataUtils.calculateNumDays(lastPlanted);
+    setStage(TreeService.calculatePhase(lastPlanted));
+    setDaysGrowing(DataUtils.calculateNumDays(lastPlanted));
+    console.log("Current Stage: " + TreeService.calculatePhase(lastPlanted));
   }, [lastPlanted]);
 
   const queryClient = useQueryClient();
@@ -44,6 +48,12 @@ const ForestListItem = (props: {
           <Col>
             <Card.Text>
               {meaning}, {id}
+            </Card.Text>
+            <Card.Text>
+              Current Stage: {stage}
+            </Card.Text>
+            <Card.Text>
+              Your tree has been growing for {daysGrowing} {daysGrowing !== undefined && daysGrowing > 1 ? 'days' : 'day'}
             </Card.Text>
             <Card.Subtitle>planted on {date}</Card.Subtitle>
           </Col>
