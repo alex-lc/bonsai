@@ -5,6 +5,8 @@ import TreeService from "../../services/treeService/TreeService";
 import { DataUtils } from "../../services/utils/dataUtils";
 // bootstrap
 import { Button, Card, Col, Row, Modal } from "react-bootstrap";
+// styles
+import styled from "styled-components";
 
 const ForestListItem = (props: {
   id: number;
@@ -49,24 +51,38 @@ const ForestListItem = (props: {
             <Card.Text>
               {meaning}, {id}
             </Card.Text>
+            <Card.Text>Current Stage: {stage}</Card.Text>
             <Card.Text>
-              Current Stage: {stage}
+              Your tree has been growing for {daysGrowing}{" "}
+              {daysGrowing !== undefined && daysGrowing > 1 ? "days" : "day"}
             </Card.Text>
-            <Card.Text>
-              Your tree has been growing for {daysGrowing} {daysGrowing !== undefined && daysGrowing > 1 ? 'days' : 'day'}
-            </Card.Text>
-            <Card.Subtitle>planted on {date}</Card.Subtitle>
           </Col>
-          <Col>
-            <Button
-              onClick={(e) => {
-                e.preventDefault();
-                mutate(id);
-              }}
-            >
-              Delete
-            </Button>
-          </Col>
+          <Row>
+            <Footer>
+              <Metadata>
+                <Card.Text>Planted on: {date}</Card.Text>
+              </Metadata>
+
+              <Controls>
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    alert("Implement replant functionality.");
+                  }}
+                >
+                  Replant
+                </Button>
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    mutate(id);
+                  }}
+                >
+                  Delete
+                </Button>
+              </Controls>
+            </Footer>
+          </Row>
         </Row>
       </Card.Body>
 
@@ -86,3 +102,27 @@ const ForestListItem = (props: {
 };
 
 export default ForestListItem;
+
+const Footer = styled.div`
+  padding: 0.2rem 1rem;
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.3rem;
+`;
+
+const Metadata = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const Controls = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;

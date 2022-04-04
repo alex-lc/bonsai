@@ -7,11 +7,8 @@ interface IObjectKeys {
   [key: string]: string;
 }
 
-// interface phaseMapI extends IObjectKeys {
-
-// }
-
 const phaseMap: IObjectKeys = {
+  "0": "Seedling",
   "1": "Seedling",
   "2": "Seedling",
   "3": "Seedling",
